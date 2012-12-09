@@ -1,0 +1,10 @@
+<VirtualHost <%= @interface %>:<%= @port %>>
+        ServerName <%= @server_name %>
+        <% if @server_alias != '' %>
+            ServerAlias <%= @server_alias %>
+        <% end %>
+        DocumentRoot <%= @site_root %>/public_html
+        ErrorLog <%= @log_dir %>/error_log
+        CustomLog <%= @log_dir %>/access_log combined
+</VirtualHost>
+
