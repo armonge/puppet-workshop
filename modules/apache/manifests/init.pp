@@ -6,4 +6,9 @@ class apache{
         ensure  => running,
         enable  => true,
     }
+    file{'/var/www':
+	ensure => directory,
+	owner  => 'www-data',
+	require => Package['apache2'],
+    }
 }

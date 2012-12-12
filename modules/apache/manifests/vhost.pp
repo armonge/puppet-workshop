@@ -10,6 +10,7 @@ define apache::vhost(
     file{"/etc/apache2/sites-available/${name}":
         ensure  => file,
         content => template('apache/vhost.erb'),
+	require	=> [Package['apache2'],File[$log_dir],],
     }
 
     if $site_enabled {
@@ -17,6 +18,7 @@ define apache::vhost(
             ensure  => link,
             target  => "/etc/apache2/sites-available/${name}",
             notify  => Service['apache2'],
+            require => Package['apache2'],
         }
     }
     else{
